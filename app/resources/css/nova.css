@@ -1,0 +1,82 @@
+
+/*
+ * =====================================================================================================================
+ * NOVA SELECTORS
+ * =====================================================================================================================
+ */
+
+.sidebar-item {
+  font-size: 13px;
+}
+
+[href="/nova/dashboards/main"]:focus {
+  box-shadow: none;
+}
+
+[href="/nova/dashboards/main"] svg {
+  height: 18px;
+}
+
+.checkbox:disabled {
+  background-color: #e1e1e1;
+}
+
+[dusk="offers-index-component"] th.whitespace-nowrap:nth-child(4),
+[dusk="offers-index-component"] th.whitespace-nowrap:nth-child(5),
+[dusk="offers-index-component"] th.whitespace-nowrap:nth-child(11),
+[dusk="offers-index-component"] th.whitespace-nowrap:nth-child(14),
+[dusk="offers-index-component"] th.whitespace-nowrap:nth-child(15),
+[dusk="offers-index-component"] th.whitespace-nowrap:nth-child(16),
+[dusk="transfers-index-component"] th.whitespace-nowrap:nth-child(6) {
+  white-space: normal;
+}
+
+/*
+ * =====================================================================================================================
+ * SELECTORS OF PACKAGES
+ * =====================================================================================================================
+ */
+
+[name="date-range-filter"] {
+  font-size: .8rem;
+}
+
+[name="date-range-filter"] + div {
+  margin-top: -2px;
+}
+
+/*
+ * =====================================================================================================================
+ * SELECTORS WE ADDED
+ * =====================================================================================================================
+ */
+
+.metro-line-color {
+  height: 20px;
+  width: 20px;
+}
+
+.transfer-status {
+  color: #333;
+  padding: 8px 10px;
+}
+
+.client-talking {
+  background: #caf982;
+}
+
+.conversation-took-place {
+  background: #04f21c;
+}
+
+.conversation-did-not-take-place {
+  background: #f6c3c9;
+}
+
+.transfer-did-not-take-place {
+  background: #ffff80;
+}
+
+.transfer-audio-box audio {
+  height: 20px;
+}

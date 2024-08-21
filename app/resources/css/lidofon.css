@@ -1,0 +1,595 @@
+@charset "utf-8";
+
+/*
+ * =====================================================================================================================
+ * GLOBAL
+ * =====================================================================================================================
+ */
+
+:root {
+  --inactive-color: #999;
+}
+
+html {
+  font-size: 15px;
+}
+
+#filters-column,
+#housing-estate-column {
+  /* The first value "24px" is the top margin of the filter column */
+  /* The second value "24px" is the "bottom margin" of the filter column */
+  /* The third value "24px" is the "additional bottom margin" of the filter column */
+  height: calc(100vh - 24px - 24px/* - 24px*/);
+  margin-top: 7px;
+  overflow-y: auto;
+}
+
+#map-column {
+  padding: 0;
+  position: relative;
+}
+
+#user-panel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: absolute;
+  bottom: 0;
+}
+
+#user-panel #search-loader {
+  margin-right: .75rem;
+  min-width: 20px;
+}
+
+#admin-panel {
+  display: flex;
+  justify-content: flex-end;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+#user-panel .btn-link,
+#admin-panel .btn-link {
+  text-decoration: 0;
+}
+
+/*
+ * =====================================================================================================================
+ * FILTERS
+ * =====================================================================================================================
+ */
+
+#filters-column .SumoSelect {
+  width: 100%;
+}
+
+#filters-column .SumoSelect .placeholder {
+  background-color: inherit;
+  color: inherit;
+  font-style: inherit;
+  opacity: 1;
+}
+
+#filters-column .SumoSelect .SelectBox {
+  padding: 2px 5px;
+}
+
+#filters-column .SumoSelect .select-all {
+  height: auto;
+  padding-bottom: 8px;
+}
+
+#filters-column h6 {
+  margin: .5rem 0;
+}
+
+#filters-column hr {
+  margin: .4rem 0;
+}
+
+#filters-column .form-check {
+  margin-bottom: 0;
+}
+
+#filters-column .form-check-input,
+#filters-column .form-check-label  {
+  cursor: pointer;
+}
+
+#filters-column #roominess-table {
+  width: 100%;
+}
+
+#filters-column #roominess-table td:not(:last-child) {
+  width: 20%;
+}
+
+#filters-column #roominess-table tr:last-child td:last-child {
+  text-align: right;
+}
+
+/* Price */
+
+#filter-price-range-box #filter-price-min-field,
+#filter-price-range-box #filter-price-max-field {
+  display: inline-block;
+  width: 50%;
+  margin-right: 5px;
+  padding: 0 0 0 7px;
+}
+
+#filter-price-range-box #filter-price-min-field:focus,
+#filter-price-range-box #filter-price-max-field:focus {
+  border-color: #dee2e6;
+  box-shadow: none;
+}
+
+#filter-price-range-box label:nth-child(2) {
+  text-align: right;
+}
+
+#filter-price-range-box #filter-price-range {
+  width: 95%;
+  margin: auto;
+}
+
+/*
+ * =====================================================================================================================
+ * MAP
+ * =====================================================================================================================
+ */
+
+.ymaps3x0--map-copyrights {
+  display: none !important;
+}
+
+#map-bootstrap-row {
+  height: 100vh;
+}
+
+#map-search-input-box,
+#phone-filter-box {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  z-index: 2; /* We need use to "2" to display search results above the sidebar collapse toggle */
+}
+
+#phone-filter-box {
+  left: unset;
+  right: 2rem;
+}
+
+#map-search-input,
+#phone-filter-input {
+  border: 1px solid #c1c1c1;
+  width: calc(100% + 15px);
+  padding: 2px 3px 2px 4px;
+}
+
+#map-search-input::-webkit-search-cancel-button {
+  cursor: pointer;
+}
+
+#map-search-input:focus,
+#phone-filter-input:focus {
+  outline: 0;
+}
+
+#map-suggest-results:not(:empty),
+#map-search-results:not(:empty) {
+  background: #fff;
+  border: 1px solid #c1c1c1;
+  margin: .5rem 0 0 0;
+  padding: .3rem;
+}
+
+#map-suggest-results div,
+#map-search-results div {
+  cursor: pointer;
+  padding: 2px 0;
+}
+
+#map-suggest-results div:hover,
+#map-search-results div:hover,
+.w3l-current-item {
+  background: #f1f1f1;
+}
+
+#sidebar-collapse-toggle {
+  background: #fff;
+  border: 1px solid #c1c1c1;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  height: 2rem;
+  width: 2rem;
+  padding-bottom: 5px;
+  position: absolute;
+  top: 4rem;
+  left: 1rem;
+  z-index: 1;
+}
+
+#map {
+  height: 100%;
+}
+
+/* https://codepen.io/katia-trifonova/pen/zwZgdx */
+
+.search-marker {
+  border: 8px solid #f33;
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+}
+
+.search-marker::after {
+  content: '';
+  border: 13px solid transparent;
+  border-top: 26px solid #f33;
+  position: absolute;
+  bottom: -32px;
+  left: 2px;
+}
+
+.housing-estate-marker {
+  background: #fff;
+  border: 1px solid transparent;
+  border-radius: 25px 15px 15px 25px;
+  cursor: pointer;
+  font-size: .9rem;
+  height: 27px;
+  padding: 2px 6px 0 30px;
+  position: relative;
+  white-space: pre;
+}
+
+.ymaps3x0--marker:hover {
+  z-index: 1 !important;
+}
+
+.ymaps3x0--marker:hover .housing-estate-marker {
+  border: 1px solid #ddd;
+}
+
+.housing-estate-marker-circle {
+  border: 4px solid transparent;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 25px;
+  width: 25px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.housing-estate-marker {
+  --has-apartments: #d73d3d;
+  --has-flats: #0a880a;
+  --has-flats-and-is-region: #4b92e0;
+}
+
+.price-up-to {
+  background: repeating-linear-gradient(
+    135deg,
+    #fff,
+    #fff 3px,
+    #ddd 3px,
+    #ddd 6px
+  ) padding-box;
+}
+
+.has-apartments-and-flats .housing-estate-marker-circle {
+  border-top-color: var(--has-apartments);
+  border-right-color: var(--has-flats);
+  border-bottom-color: var(--has-flats);
+  border-left-color: var(--has-apartments);
+  transform: rotate(135deg);
+}
+
+.has-apartments-and-flats .housing-estate-marker-circle-text {
+  transform: rotate(-135deg);
+}
+
+.has-apartments .housing-estate-marker-circle {
+  border-color: var(--has-apartments);
+}
+
+.has-flats .housing-estate-marker-circle {
+  border-color: var(--has-flats);
+}
+
+.has-no-objects .housing-estate-marker-circle {
+  border-color: var(--inactive-color);
+}
+
+.has-apartments-and-flats.is-region .housing-estate-marker-circle {
+  border-right-color: var(--has-flats-and-is-region);
+  border-bottom-color: var(--has-flats-and-is-region);
+}
+
+.has-flats.is-region .housing-estate-marker-circle {
+  border-color: var(--has-flats-and-is-region);
+}
+
+.housing-estate-selected .housing-estate-marker-circle {
+  color: #fff;
+  font-weight: bold;
+}
+
+.housing-estate-selected.has-apartments-and-flats .housing-estate-marker-circle {
+  background: linear-gradient(-45deg, var(--has-flats) 51%, var(--has-apartments) 50%);
+}
+
+.housing-estate-selected.has-apartments .housing-estate-marker-circle {
+  background: var(--has-apartments);
+}
+
+.housing-estate-selected.has-flats .housing-estate-marker-circle {
+  background: var(--has-flats);
+}
+
+.housing-estate-selected.has-no-objects .housing-estate-marker-circle {
+  background: var(--inactive-color);
+}
+
+.housing-estate-selected.has-apartments-and-flats.is-region .housing-estate-marker-circle {
+  background: linear-gradient(-45deg, var(--has-flats-and-is-region) 51%, var(--has-apartments) 50%);
+}
+
+.housing-estate-selected.has-flats.is-region .housing-estate-marker-circle {
+  background: var(--has-flats-and-is-region);
+}
+
+.metro-stations-under-construction {
+  background: #fff;
+  border: 1px solid var(--inactive-color);
+  border-radius: 50%;
+  color: var(--inactive-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: bold;
+  height: 18px;
+  width: 18px;
+}
+
+/* https://getbootstrap.com/docs/5.3/components/tooltips/#custom-tooltips */
+.metro-stations-under-construction-tooltip {
+  --bs-tooltip-bg: var(--inactive-color);
+  --bs-tooltip-color: #fff;
+}
+
+/*
+ * =====================================================================================================================
+ * HOUSING ESTATE DATA
+ * =====================================================================================================================
+ */
+
+/*
+ * ---------------------------------------------------------------------------------------------------------------------
+ * Common for data blocks of housing estate
+ * ---------------------------------------------------------------------------------------------------------------------
+ */
+
+#do-not-suggest-other-developers-alert,
+#housing-estate-photos,
+#housing-estate-name,
+#housing-estate-opens-in,
+#housing-estate-promotions,
+#housing-estate-metro,
+#housing-estate-tags,
+#housing-estate-infrastructure,
+#housing-estate-laps,
+#housing-estate-objects {
+  margin-top: .3rem;
+}
+
+#housing-estate-developer-name img,
+.housing-estate-infrastructure-item img {
+  height: 25px;
+  width: 25px;
+  margin-right: 5px;
+  vertical-align: bottom;
+}
+
+.housing-estate-metro-item,
+.housing-estate-infrastructure-item {
+  display: inline-block;
+  margin-right: 10px;
+  white-space: pre-wrap;
+}
+
+.time-on-foot,
+.time-by-car {
+  background-repeat: no-repeat;
+  background-size: contain;
+  margin-left: 5px;
+  padding-left: 20px;
+}
+
+.time-on-foot {
+  background-image: url(../img/icons/icons8-walk-64.png);
+}
+
+.time-by-car {
+  background-image: url(../img/icons/icons8-car-80.png);
+}
+
+/*
+ * ---------------------------------------------------------------------------------------------------------------------
+ * Developer name
+ * ---------------------------------------------------------------------------------------------------------------------
+ */
+
+#housing-estate-developer-name {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+#housing-estate-developer-name span span {
+  margin-right: 10px;
+}
+
+/*
+ * ---------------------------------------------------------------------------------------------------------------------
+ * "Do not suggest other developers" alert
+ * ---------------------------------------------------------------------------------------------------------------------
+ */
+
+#do-not-suggest-other-developers-alert {
+  background: #f23c3c;
+  border-radius: 3px;
+  color: #fff;
+  margin-bottom: 0;
+  padding: 5px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+/*
+ * ---------------------------------------------------------------------------------------------------------------------
+ * Housing estate name
+ * ---------------------------------------------------------------------------------------------------------------------
+ */
+
+#housing-estate-name {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  font-weight: bold;
+}
+
+#housing-estate-name a {
+  background: url(../img/icons/icons8-external-link-64.png);
+  background-size: cover;
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  vertical-align: text-bottom;
+}
+
+/*
+ * ---------------------------------------------------------------------------------------------------------------------
+ * Working hours
+ * ---------------------------------------------------------------------------------------------------------------------
+ */
+
+#housing-estate-opens-in {
+  font-size: .9rem;
+}
+
+/*
+ * ---------------------------------------------------------------------------------------------------------------------
+ * Metro
+ * ---------------------------------------------------------------------------------------------------------------------
+ */
+
+.housing-estate-metro-line {
+  border-radius: 100%;
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: bold;
+  height: 22px;
+  width: 22px;
+  margin-right: 5px;
+  text-align: center;
+  vertical-align: bottom;
+}
+
+/*
+ * ---------------------------------------------------------------------------------------------------------------------
+ * Tags
+ * ---------------------------------------------------------------------------------------------------------------------
+ */
+
+#housing-estate-tags span {
+  background: #ccc;
+  display: inline-block;
+  margin-top: .3rem; /* For the case when there is a line break */
+  margin-right: .3rem;
+  padding: 0 7px;
+}
+
+/*
+ * ---------------------------------------------------------------------------------------------------------------------
+ * Infrastructure
+ * ---------------------------------------------------------------------------------------------------------------------
+ */
+
+/*
+ * ---------------------------------------------------------------------------------------------------------------------
+ * LAPS — Location & Advantages & Payment & Scenario
+ * ---------------------------------------------------------------------------------------------------------------------
+ */
+
+#housing-estate-laps-tabs .ui-tabs-nav {
+  padding: .2rem;
+}
+
+#housing-estate-laps-tabs .ui-widget-header {
+  background: none;
+  border: 0;
+}
+
+#housing-estate-laps-tabs .ui-tabs-tab {
+  border-radius: 3px;
+}
+
+#housing-estate-laps-tabs .ui-tabs-tab:not(.ui-tabs-active) {
+  background: none;
+  border: 1px solid #ccc;
+}
+
+#housing-estate-laps-tabs .ui-tabs-panel {
+  padding: .4rem .2rem;
+  white-space: pre-wrap;
+}
+
+#housing-estate-laps-tabs .ui-tabs-anchor {
+  padding: 0 2px;
+}
+
+/*
+ * ---------------------------------------------------------------------------------------------------------------------
+ * Objects
+ * ---------------------------------------------------------------------------------------------------------------------
+ */
+
+#housing-estate-objects table {
+  width: 100%;
+  margin: .4rem 0;
+  text-align: center;
+}
+
+#housing-estate-objects td {
+  border: 1px solid #c5c5c5;
+}
+
+.housing-estate-objects-header {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+/*
+ * =====================================================================================================================
+ * DAILY COMPETITION
+ * =====================================================================================================================
+ */
+
+#company-record {
+  list-style: none;
+}

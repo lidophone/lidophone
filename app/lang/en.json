@@ -1,0 +1,11 @@
+{
+  "Mo": "Monday",
+  "Tu": "Tuesday",
+  "We": "Wednesday",
+  "Th": "Thursday",
+  "Fr": "Friday",
+  "Sa": "Saturday",
+  "Su": "Sunday",
+  "MoFr": "Weekdays",
+  "MoSu": "All days"
+}
